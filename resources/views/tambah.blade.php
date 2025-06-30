@@ -13,15 +13,23 @@
     <a href="{{ url()->previous() }}">Kembali</a>
     <form action="{{ route('tambah-action') }}" method="post">
         @csrf
+        <input type="hidden" name="jenis" value="tambah">
         <label for="">Angka 1</label>
-        <input type="number" name="angka1" placeholder="Masukkan Angka">
+        <input type="text" name="angka1" placeholder="Masukkan Angka">
         <br>
         <label for="">Angka 2</label>
-        <input type="number" name="angka2" placeholder="Masukkan Angka">
+        <input type="text" name="angka2" placeholder="Masukkan Angka">
         <br>
         <button type="submit">Simpan</button>
     </form>
+    @if ($jumlah)
     <h1>Hasilnya Adalah {{ $jumlah }}</h1>
+    @endif
+    @if (isset($error))
+<h2>{{ $error }}</h2>
+    @endif
+
+    <a href="{{ url('data/hitungan') }}">Data Hitungan</a>
 </body>
 
 </html>
