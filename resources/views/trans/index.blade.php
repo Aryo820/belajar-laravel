@@ -6,25 +6,27 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ $title }}</h3>
                     <div class="mb-3" align="right">
-                        <a href="{{ route('customer.create') }}" class="btn btn-success">Add Customer</a>
+                        <a href="{{ route('trans.create') }}" class="btn btn-success">Create Order</a>
                     </div>
                     <table class="table table-bordered text-center">
                         <tr>
                             <th>No</th>
-                            <th>Name Customer</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Order Number</th>
+                            <th>Customer</th>
+                            <th>Date End</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         @foreach ($datas as $index => $data)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ number_format($data->phone) }}</td>
-                                <td>{{ $data->address }}</td>
+                                <td>{{ $data->order_code }}</td>
+                                <td>{{ $data->customer->name }}</td>
+                                <td>{{ $data->order_end_date }}</td>
+                                <td>{{ $data->status_text }}</td>
                                 <td>
-                                    <a href="{{ route('customer.edit', $data->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('customer.destroy', $data->id) }}" method="post"
+                                    <a href="{{ route('trans.show', $data->id) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('trans.destroy', $data->id) }}" method="post"
                                         style="display: inline">
                                         @csrf
                                         @method('DELETE')

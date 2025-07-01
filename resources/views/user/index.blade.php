@@ -6,25 +6,23 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ $title }}</h3>
                     <div class="mb-3" align="right">
-                        <a href="{{ route('customer.create') }}" class="btn btn-success">Add Customer</a>
+                        <a href="{{ route('user.create') }}" class="btn btn-success">Create Customer</a>
                     </div>
                     <table class="table table-bordered text-center">
                         <tr>
                             <th>No</th>
-                            <th>Name Customer</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Name User</th>
+                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                         @foreach ($datas as $index => $data)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $data->name }}</td>
-                                <td>{{ number_format($data->phone) }}</td>
-                                <td>{{ $data->address }}</td>
+                                <td>{{ $data->email }}</td>
                                 <td>
-                                    <a href="{{ route('customer.edit', $data->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('customer.destroy', $data->id) }}" method="post"
+                                    <a href="{{ route('user.edit', $data->id) }}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('user.destroy', $data->id) }}" method="post"
                                         style="display: inline">
                                         @csrf
                                         @method('DELETE')

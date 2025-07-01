@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Data Level</h5>
                     <div class="mb-3" align="right">
-                        <a class="btn btn-success" href="{{ route('level.create') }}">Create Data</a>
+                        <a class="btn btn-success" href="{{ route('level.create') }}">Add Level</a>
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -23,7 +23,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>
-                                    <a href="{{ route('level.edit', $data->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('level.edit', $data->id) }}" class="btn btn-primary">Edit</a>
                                     <form class="d-inline" action="{{ route('level.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

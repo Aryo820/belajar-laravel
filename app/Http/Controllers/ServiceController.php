@@ -23,7 +23,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $title = "Create Service";
+        $title = "Add Service";
         return view('service.create', compact('title'));
     }
 

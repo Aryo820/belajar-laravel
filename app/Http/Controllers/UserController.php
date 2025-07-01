@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Monolog\Level;
-use App\Models\Levels;
+use App\Models\User;
 
-class LevelController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class LevelController extends Controller
     public function index()
     {
         // $datas = Level::all();
-        $datas = Levels::orderBy('id', 'desc')->get();
-        $title = "Data Level";
-        return view('level.index', compact('datas', 'title'));
+        $datas = User::orderBy('id', 'desc')->get();
+        $title = "Data User";
+        return view('user.index', compact('datas', 'title'));
     }
 
     /**
@@ -24,8 +23,8 @@ class LevelController extends Controller
      */
     public function create()
     {
-        $title = "Add Level";
-        return view('level.create', compact('title'));
+        $title = "Tambah User";
+        return view('user.create', compact('title'));
     }
 
     /**
@@ -33,8 +32,8 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        Levels::create($request->all());
-        return redirect()->route('level.index')->with('success', 'Data berhasil disimpan');
+        User::create($request->all());
+        return redirect()->route('user')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -50,11 +49,11 @@ class LevelController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit Level";
-        $level = Levels::find($id);
+        $title = "Edit User";
+        $user = User::find($id);
         // $level = Levels::findorFail($id);
         // $level = Levels::where('id',$id)->first();
-        return view('level.edit', compact('level', 'title'));
+        return view('user.edit', compact('user', 'title'));
     }
 
     /**
@@ -62,9 +61,14 @@ class LevelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $level = Levels::find($id);
-        $level->name = $request->name;
-        return redirect()->to('level')->with('success', 'Data berhasil diupdate');
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = ($request->password);
+        }
+        $user->save();
+        return redirect()->to('user')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -72,8 +76,8 @@ class LevelController extends Controller
      */
     public function destroy(string $id)
     {
-        $level = Levels::find($id);
-        $level->delete();
-        return redirect()->route('level.index')->with('success', 'Data berhasil dihapus');
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('user')->with('success', 'Data berhasil dihapus');
     }
 }

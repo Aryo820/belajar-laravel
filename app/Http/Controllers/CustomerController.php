@@ -24,7 +24,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $title = "Create Customer";
+        $title = "Add Customer";
         return view('customer.create', compact('title'));
     }
 
