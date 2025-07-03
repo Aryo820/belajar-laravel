@@ -13,18 +13,20 @@ class LevelsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // insert intoo
         $levels = [
             [
-                'name' => 'Administrator',
+                'name' => 'Administrator'
             ],
             [
-                'name' => 'Operator',
+                'name' => 'Operator'
             ],
             [
-                'name' => 'Leader',
+                'name' => 'Leader'
             ],
+
         ];
+
         Levels::insert($levels);
     }
 }

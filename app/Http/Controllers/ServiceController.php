@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TypeofServices;
+use App\Models\TypeOfServices;
 
 class ServiceController extends Controller
 {
@@ -12,8 +12,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        // $datas = Level::all();
-        $datas = TypeofServices::orderBy('id', 'desc')->get();
+        // $datas =  Levels::all();
+        $datas =  TypeOfServices::orderBy('id', 'desc')->get();
         $title = "Data Service";
         return view('service.index', compact('datas', 'title'));
     }
@@ -32,8 +32,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        TypeofServices::create($request->all());
-        return redirect()->to('service')->with('success', 'Data saved successfully');
+        // return $request;
+        TypeOfServices::create($request->all());
+        return redirect()->to('service')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -49,11 +50,11 @@ class ServiceController extends Controller
      */
     public function edit(string $id)
     {
+        $edit = TypeOfServices::find($id); //blank
         $title = "Edit Service";
-        $service = TypeofServices::find($id);
-        // $level = Levels::findorFail($id);
-        // $level = Levels::where('id',$id)->first();
-        return view('service.edit', compact('title', 'service'));
+        // $level = Levels::findOrFail($id); //404
+        // $level = Levels::where('id', $id)->first();
+        return view('service.edit', compact('edit', 'title'));
     }
 
     /**
@@ -61,12 +62,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $service = TypeofServices::find($id);
+        $service = TypeOfServices::find($id);
         $service->service_name = $request->service_name;
         $service->price = $request->price;
         $service->description = $request->description;
         $service->save();
-        return redirect()->to('service')->with('success', 'Data updated successfully');
+        return redirect()->to('service')->with('success', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -74,8 +75,8 @@ class ServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        $service = TypeofServices::find($id);
+        $service = TypeOfServices::find($id);
         $service->delete();
-        return redirect()->to('service')->with('success', 'Data deleted successfully');
+        return redirect()->to('service')->with('success', 'Data Berhasil di Hapus');
     }
 }

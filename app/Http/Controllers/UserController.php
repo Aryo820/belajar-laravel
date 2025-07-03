@@ -12,8 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $datas = Level::all();
-        $datas = User::orderBy('id', 'desc')->get();
+        // $datas =  Levels::all();
+        $datas =  User::orderBy('id', 'desc')->get();
         $title = "Data User";
         return view('user.index', compact('datas', 'title'));
     }
@@ -32,8 +32,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         User::create($request->all());
-        return redirect()->route('user')->with('success', 'Data berhasil disimpan');
+        return redirect()->to('user')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -49,11 +50,11 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit User";
-        $user = User::find($id);
-        // $level = Levels::findorFail($id);
-        // $level = Levels::where('id',$id)->first();
-        return view('user.edit', compact('user', 'title'));
+        $edit = User::find($id); //blank
+        $title = "Ubah User";
+        // $level = Levels::findOrFail($id); //404
+        // $level = Levels::where('id', $id)->first();
+        return view('user.edit', compact('edit', 'title'));
     }
 
     /**
@@ -65,10 +66,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password) {
-            $user->password = ($request->password);
+            $user->password = $request->password;
         }
         $user->save();
-        return redirect()->to('user')->with('success', 'Data berhasil diupdate');
+        return redirect()->to('user')->with('success', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -78,6 +79,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('user')->with('success', 'Data berhasil dihapus');
+        return redirect()->to('user')->with('success', 'Data Berhasil di Ubah');
     }
 }

@@ -6,6 +6,6 @@ abstract class Controller
 {
     public function callName()
     {
-        return 'Hello World';
+        return "duar";
     }
 }

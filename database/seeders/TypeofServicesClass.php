@@ -4,32 +4,32 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\TypeofServices;
+use App\Models\TypeOfServices;
 
-class TypeofServicesClass extends Seeder
+class TypeOfServicesClass extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        TypeofServices::insert([
+        TypeOfServices::insert([
             [
                 'service_name' => 'Hanya Cuci',
-                'price' => 5000,
-                'description' => 'Regular',
+                'price'        => 5000,
+                'description'  => 'Service hanya cuci regular'
             ],
             [
                 'service_name' => 'Hanya Gosok',
-                'price' => 4000,
-                'description' => 'Regular',
+                'price'        => 4000,
+                'description'  => 'Service ini hanya gosok regular'
             ],
             [
-                'service_name' => 'Hanya Cuci & Gosok',
-                'price' => 8000,
-                'description' => 'Regular',
+                'service_name' => 'Cuci dan Gosok',
+                'price'        => 8000,
+                'description'  => 'Service hanya cuci regular'
             ],
-            
+
         ]);
     }
 }

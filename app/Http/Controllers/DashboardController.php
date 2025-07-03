@@ -13,13 +13,11 @@ class DashboardController extends Controller
     {
         return view('dashboard.index');
     }
-
     public function indexService()
     {
         return view('service.index');
     }
-
-    public function insertService()
+    public function showInsService()
     {
         return view('service.create');
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Monolog\Level;
 use App\Models\Levels;
 
 class LevelController extends Controller
@@ -13,8 +12,8 @@ class LevelController extends Controller
      */
     public function index()
     {
-        // $datas = Level::all();
-        $datas = Levels::orderBy('id', 'desc')->get();
+        // $datas =  Levels::all();
+        $datas =  Levels::orderBy('id', 'desc')->get();
         $title = "Data Level";
         return view('level.index', compact('datas', 'title'));
     }
@@ -33,8 +32,9 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         Levels::create($request->all());
-        return redirect()->route('level.index')->with('success', 'Data berhasil disimpan');
+        return redirect()->to('level')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -50,10 +50,10 @@ class LevelController extends Controller
      */
     public function edit(string $id)
     {
+        $level = Levels::find($id); //blank
         $title = "Edit Level";
-        $level = Levels::find($id);
-        // $level = Levels::findorFail($id);
-        // $level = Levels::where('id',$id)->first();
+        // $level = Levels::findOrFail($id); //404
+        // $level = Levels::where('id', $id)->first();
         return view('level.edit', compact('level', 'title'));
     }
 
@@ -64,7 +64,8 @@ class LevelController extends Controller
     {
         $level = Levels::find($id);
         $level->name = $request->name;
-        return redirect()->to('level')->with('success', 'Data berhasil diupdate');
+        $level->save();
+        return redirect()->to('level')->with('success', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -74,6 +75,6 @@ class LevelController extends Controller
     {
         $level = Levels::find($id);
         $level->delete();
-        return redirect()->route('level.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->to('level')->with('success', 'Data Berhasil di Ubah');
     }
 }

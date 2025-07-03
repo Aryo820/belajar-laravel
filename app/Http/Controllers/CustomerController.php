@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customers;
 use Illuminate\Http\Request;
-// use App\Models\TypeofServices;
+use App\Models\Customers;
 
 class CustomerController extends Controller
 {
@@ -13,8 +12,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // $datas = Level::all();
-        $datas = Customers::orderBy('id', 'desc')->get();
+        // $datas =  Levels::all();
+        $datas =  Customers::orderBy('id', 'desc')->get();
         $title = "Data Customer";
         return view('customer.index', compact('datas', 'title'));
     }
@@ -33,8 +32,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         Customers::create($request->all());
-        return redirect()->to('customer')->with('success', 'Data saved successfully');
+        return redirect()->to('customer')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -50,11 +50,11 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Edit customer";
-        $customer = Customers::find($id);
-        // $level = Levels::findorFail($id);
-        // $level = Levels::where('id',$id)->first();
-        return view('customer.edit', compact('title', 'customer'));
+        $edit = Customers::find($id); //blank
+        $title = "Edit Customer";
+        // $level = Levels::findOrFail($id); //404
+        // $level = Levels::where('id', $id)->first();
+        return view('customer.edit', compact('edit', 'title'));
     }
 
     /**
@@ -67,7 +67,7 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->address = $request->address;
         $customer->save();
-        return redirect()->to('customer')->with('success', 'Data updated successfully');
+        return redirect()->to('customer')->with('success', 'Data Berhasil di Ubah');
     }
 
     /**
@@ -77,6 +77,6 @@ class CustomerController extends Controller
     {
         $customer = Customers::find($id);
         $customer->delete();
-        return redirect()->to('customer')->with('success', 'Data deleted successfully');
+        return redirect()->to('customer')->with('success', 'Data Berhasil di Hapus');
     }
 }

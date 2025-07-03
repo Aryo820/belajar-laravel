@@ -9,17 +9,17 @@
                     </h3>
                     <form action="{{ route('user.store') }}" method="post">
                         @csrf
-                        <label for="" class="form-lable">Name</label>
+                        <label for="" class="form-lable">Nama *</label>
                         <input type="text" class="form-control" name="name" required>
 
                         <label for="" class="form-label">Email</label>
-                        <input type="text" class="form-control" name="email" required>
+                        <input type="email" class="form-control" name="email">
 
                         <label for="" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" required>
+                        <input type="password" class="form-control" name="password">
 
-                        <button type="submit" class="btn btn-primary mt-2">Create</button>
-                        <a href="{{ url()->previous() }}" class="btn btn-secondary mt-2">Back</a>
+                        <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary mt-2">Kembali</a>
                     </form>
                 </div>
             </di>

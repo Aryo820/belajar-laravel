@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <a href="{{ url()->previous() }}">Kembali</a>
+
+    <a href="{{ url('belajar') }}">Back</a>
     <table border="1">
         <tr>
             <th>No</th>
@@ -17,24 +18,24 @@
             <th>Angka1</th>
             <th>Angka2</th>
             <th>Hasil</th>
-            <th>Action</th>
+            <th>Actions</th>
         </tr>
         @foreach ($counts as $index => $c)
-        <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $c->jenis }}</td>
-            <td>{{ $c->angka1 }}</td>
-            <td>{{ $c->angka2 }}</td>
-            <td>{{ $c->hasil }}</td>
-            <td>
-                <a href="{{ route('edit.data-hitung', $c->id) }}">Edit</a>
-                <form action="{{ route('softDelete.data-hitung', $c->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
-                </form>
-            </td>
-        </tr>
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $c->jenis }}</td>
+                <td>{{ $c->angka1 }}</td>
+                <td>{{ $c->angka2 }}</td>
+                <td>{{ $c->hasil }}</td>
+                <td>
+                    <a href="{{ route('edit.data-hitung', $c->id) }}">Edit</a>
+                    <form action="{{ route('softDelete.data-hitung', $c->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Hapus Sementara?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
         @endforeach
     </table>
 </body>

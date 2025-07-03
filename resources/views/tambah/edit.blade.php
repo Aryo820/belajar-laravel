@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>{{ $title ?? '' }}</h1>
+    <h1>{{ $title ?? '' }} </h1>
     <a href="{{ url('belajar') }}">Kembali</a>
     <form action="{{ route('update.tambahan', $count->id) }}" method="post">
         @csrf
@@ -23,14 +23,17 @@
         <br>
         <button type="submit">Simpan</button>
     </form>
-    @if ($jumlah)
-    <h1>Hasilnya Adalah {{ $jumlah }}</h1>
+
+    @if (isset($jumlah))
+        <h1>Hasilnya adalah {{ $jumlah }}</h1>
     @endif
+
     @if (isset($error))
-<h2>{{ $error }}</h2>
+        <h2>{{ $error }}</h2>
     @endif
 
     <a href="{{ url('data/hitungan') }}">Data Hitungan</a>
+
 </body>
 
 </html>
