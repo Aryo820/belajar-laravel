@@ -21,6 +21,7 @@
     @include('inc.sidebar')
 
     <main id="main" class="main">
+        @include('sweetalert::alert')
 
         <div class="pagetitle">
             <h1>Blank Page</h1>
@@ -48,6 +49,7 @@
             class="bi bi-arrow-up-short"></i></a>
 
     @include('inc.js')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <script>
         const button = document.querySelector('.addRow');
         const tbody = document.querySelector('#myTable tbody');
