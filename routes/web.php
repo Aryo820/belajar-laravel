@@ -47,3 +47,5 @@ Route::get('duar/{id}', [App\Http\Controllers\BelajarController::class, 'update'
 Route::get('edit', [App\Http\Controllers\BelajarController::class, 'nuall']);
 
 Route::post('tambah-action', [App\Http\Controllers\BelajarController::class, 'tambahAction'])->name('tambah-action');
+
+// Route::get('londri')

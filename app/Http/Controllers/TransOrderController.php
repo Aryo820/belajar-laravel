@@ -47,7 +47,7 @@ class TransOrderController extends Controller
         $customers = Customers::OrderBy('id', 'desc')->get();
         $services = TypeOfServices::OrderBy('id', 'desc')->get();
 
-        return view('trans.create', compact('title', 'orderCode', 'customers', 'services'));
+        return view('trans.londri', compact('title', 'orderCode', 'customers', 'services'));
     }
 
     /**

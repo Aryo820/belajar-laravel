@@ -64,7 +64,7 @@
 <body>
     <div class="struk">
         <div class="struk-header">
-            <h3>Laundry Mamah</h3>
+            <h3>Laundry</h3>
             <h2>Murah Meriah</h2>
 
             <div class="info text-center">
